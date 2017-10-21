@@ -17,6 +17,21 @@
 .map-container .mapboxgl-canvas {
   position: inherit !important;
 }
+
+.map-container {
+  height: 100%;
+  width: 100%;
+  display: 'flex';
+  flex-direction: 'column';
+}
+
+
+.map-div {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
 .app {
   background-image: radial-gradient(#B3FFD3 0%, #A0C2EA 52%, #949BF9 85%, #8F89FF 100%);
 }

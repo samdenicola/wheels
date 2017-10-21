@@ -64,13 +64,11 @@ class App extends Component {
           <p className="app-intro">
             a community for those on wheels
           </p>
-          <div style={{width: '500px', height: '500px', display: 'flex',
-    flexDirection: 'column', alignSelf: "center"}}>
+          <div className={'map-div'}>
             <div className="">
               <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
             </div>
-            <div ref={el => this.mapContainer = el} style={{width: '500px', height: '500px', display: 'flex',
-    flexDirection: 'column'}} className={'map-container'}/>
+            <div ref={el => this.mapContainer = el}  className={'map-container'}/>
           </div>
 
           <form onSubmit={this.addMessage.bind(this)}>
