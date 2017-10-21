@@ -1,5 +1,6 @@
-html, body, #root, .app, .app-body {
+html, body, #root, .app, .app-body, .splashscreen {
   height: 100%;
+  overflow: auto;
 }
 .app-body {
   display: flex;
@@ -8,8 +9,11 @@ html, body, #root, .app, .app-body {
   justify-content: center;
 }
 
-.app {
-  background-image: radial-gradient(#B3FFD3 0%, #A0C2EA 52%, #949BF9 85%, #8F89FF 100%);
+.height100 {
+  height: 100%;
+}
+.width100 {
+  height: 100%;
 }
 
 .app-header {
