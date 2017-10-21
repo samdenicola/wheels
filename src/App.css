@@ -8,8 +8,17 @@ html, body, #root, .app, .app-body {
   justify-content: center;
 }
 
+.app {
+  background-image: radial-gradient(#B3FFD3 0%, #A0C2EA 52%, #949BF9 85%, #8F89FF 100%);
+}
+
 .app-header {
   height: 60px;
+}
+
+.app-footer {
+  height: 60px;
+  background-color: #8F89FF;
 }
 
 .app-title {
@@ -34,9 +43,6 @@ html, body, #root, .app, .app-body {
   height: 400px;
 }
 
-.app {
-  background-image: radial-gradient(#B3FFD3 0%, #A0C2EA 52%, #949BF9 85%, #8F89FF 100%);
-}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
