@@ -10,20 +10,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      messages: [],
       lng: 5,
       lat: 34,
       zoom: 1.5
-     }; // <- set up react state
-  }
-  componentWillMount(){
-    /* Create reference to messages in Firebase Database */
-    let messagesRef = fire.database().ref('messages').orderByKey().limitToLast(100);
-    messagesRef.on('child_added', snapshot => {
-      /* Update React state when message is added at Firebase Database */
-      let message = { text: snapshot.val(), id: snapshot.key };
-      this.setState({ messages: [message].concat(this.state.messages) });
-    })
+     };
   }
   componentDidMount() {
     const { lng, lat, zoom } = this.state;
@@ -45,19 +35,13 @@ class App extends Component {
     });
   }
 
-  addMessage(e){
-    e.preventDefault(); // <- prevent form submit from reloading the page
-    /* Send the message to Firebase */
-    fire.database().ref('messages').push( this.inputEl.value );
-    this.inputEl.value = ''; // <- clear the input
-  }
   render() {
     const { lng, lat, zoom } = this.state;
 
     return (
       <div className="app">
         <div className="app-header">
-          
+          header
         </div>
         <div className="app-body">
           <div className="app-title">wheels</div>
@@ -70,16 +54,9 @@ class App extends Component {
             </div>
             <div ref={el => this.mapContainer = el}  className={'map-container'}/>
           </div>
-
-          <form onSubmit={this.addMessage.bind(this)}>
-            <input type="text" ref={ el => this.inputEl = el }/>
-            <input type="submit"/>
-            <div>
-              { /* Render the list of messages */
-                this.state.messages.map( message => <p key={message.id}>{message.text}</p> )
-              }
-            </div>
-          </form>
+        </div>
+        <div className="app-footer">
+          footer
         </div>
       </div>
     );
