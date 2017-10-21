@@ -14,9 +14,11 @@
   font-size: 4em;
 }
 
+.map-container .mapboxgl-canvas {
+  position: inherit !important;
+}
 .app {
-  background-image: radial-gradient(22% -1%, #B3FFD3 0%, #A0C2EA 52%, #949BF9 85%, #8F89FF 100%);
-  height: 100vh;
+  background-image: radial-gradient(#B3FFD3 0%, #A0C2EA 52%, #949BF9 85%, #8F89FF 100%);
 }
 
 .App-logo {
