@@ -1,5 +1,7 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 import "./SplashScreen.css";
+
 export default class SplashScreen extends React.Component {
   render() {
     // const {} = this.props
@@ -13,8 +15,12 @@ export default class SplashScreen extends React.Component {
           }}
           className={"login-header"}
         >
+        <Link to={"/login"}>
           <div className={"button is-transparent"}>Log In</div>
+        </Link >
+        <Link to={"/signup"}>
           <div className={"button is-primary"}>Sign Up</div>
+        </Link>
         </div>
         <div
           style={{
@@ -24,7 +30,7 @@ export default class SplashScreen extends React.Component {
             flexDirection: "column",
             flexWrap: "wrap",
             justifyContent: "center",
-            alignItems: "center",
+            alignItems: "center"
           }}
         >
           <div className="app-title">wheels</div>
