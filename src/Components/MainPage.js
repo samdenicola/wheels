@@ -6,6 +6,7 @@ import "./SplashScreen.css";
 export default class SplashScreen extends React.Component {
   render() {
     // const {} = this.props
+
     return (
       <div className={"mainPage"}>
         <Header/>

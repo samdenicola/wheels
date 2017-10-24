@@ -6,19 +6,54 @@ mapboxgl.accessToken =
 
 export default class Map extends React.Component {
   state = { 
-    lng: 5,
-    lat: 34,
-    zoom: 1.5
+    lng: 0,
+    lat: 0,
+    userLng: null,
+    userLat: null,
+    zoom: 1
    };
+  componentWillMount() {
+    
+  } 
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch()
+  }
   componentDidMount() {
     const { lng, lat, zoom } = this.state;
-
+    const self = this;
+    
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: "mapbox://styles/mapbox/streets-v9",
       center: [lng, lat],
       zoom
     });
+    if (navigator.geolocation) {
+      console.log('Geolocation is supported!');
+      navigator.geolocation.watchPosition(function(position) { 
+        const {latitude, longitude} = position.coords;
+        self.setState({userLat: latitude, userLng: longitude})
+      })
+    } else {
+      console.log('Geolocation is not supported for this Browser/OS.');
+    }
+
+    const el = document.createElement('div');
+    el.id = 'userMarker';
+
+    map.on("load", () => {
+      const {userLat, userLng} = this.state;
+      if (userLat && userLng) {
+      const popup = new mapboxgl.Popup()
+          .setText('You are here!');
+       new mapboxgl.Marker(el)
+         .setLngLat([userLng, userLat])
+         .setPopup(popup)
+         .addTo(map);
+        map.flyTo({center: [userLng, userLat], zoom: 14});
+      }
+    });
+
     map.on("move", () => {
       const { lng, lat } = map.getCenter();
 

@@ -10,3 +10,12 @@ body {
 div {
 	color: #595757;
 }
+
+#userMarker {
+    background-image: url('https://st2.depositphotos.com/4679193/11913/v/110/depositphotos_119134704-stock-illustration-hippie-blue-van-icon.jpg');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
