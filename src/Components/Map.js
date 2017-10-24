@@ -10,13 +10,15 @@ export default class Map extends React.Component {
     lat: 0,
     userLng: null,
     userLat: null,
+    userWatchId: null
     zoom: 1
    };
   componentWillMount() {
     
   } 
   componentWillUnmount() {
-    navigator.geolocation.clearWatch()
+    const {userWatchId} = this.state;
+    if (userWatchId) navigator.geolocation.clearWatch() //unregister location/error monitoring handlers
   }
   componentDidMount() {
     const { lng, lat, zoom } = this.state;
@@ -30,9 +32,10 @@ export default class Map extends React.Component {
     });
     if (navigator.geolocation) {
       console.log('Geolocation is supported!');
-      navigator.geolocation.watchPosition(function(position) { 
+      //register location monitoring, update state with user's position
+      const userWatchId = navigator.geolocation.watchPosition(function(position) { 
         const {latitude, longitude} = position.coords;
-        self.setState({userLat: latitude, userLng: longitude})
+        self.setState({userLat: latitude, userLng: longitude, userWatchId: userWatchId})
       })
     } else {
       console.log('Geolocation is not supported for this Browser/OS.');
@@ -42,6 +45,7 @@ export default class Map extends React.Component {
     el.id = 'userMarker';
 
     map.on("load", () => {
+      //this assumes map loading takes longer than geolocation tracking (UNSAFE) will need to change this!
       const {userLat, userLng} = this.state;
       if (userLat && userLng) {
       const popup = new mapboxgl.Popup()
