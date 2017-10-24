@@ -10,7 +10,7 @@ export default class Map extends React.Component {
     lat: 0,
     userLng: null,
     userLat: null,
-    userWatchId: null
+    userWatchId: null,
     zoom: 1
    };
   componentWillMount() {
